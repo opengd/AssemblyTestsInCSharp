@@ -13,13 +13,13 @@ namespace AssemblyTestsInCSharp
 
         static void Main(string[] args)
         {
+            // https://defuse.ca/online-x86-assembler.htm#disassembly2
             var byteCodeArray = new Byte[]
             {
-                0x8B, 0x54, 0x24, 0x0C,
                 0x8B, 0x44, 0x24, 0x04, // mov eax,dword ptr [esp+4]
-                0x8B, 0x4C, 0x24, 0x08, // mov ecx,dword ptr [esp+2]
-                0x40, 0x83, 0xF8, 0x0A, 0x7C, 0xFA,
-                0xC2, 0x0c, 0x00
+                0x03, 0x44, 0x24, 0x08, // add eax,dword ptr [esp+8]
+                0x03, 0x44, 0x24, 0x0C, // add eax,dword ptr [esp+12]
+                0xC2, 0x0c, 0x00 // ret eax
             };
 
             GCHandle pinnedArray = GCHandle.Alloc(byteCodeArray, GCHandleType.Pinned);
